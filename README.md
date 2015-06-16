@@ -1,4 +1,4 @@
-# annotate
+# fn-annotate
 
 [![NPM Version](https://img.shields.io/npm/v/fn-annotate.svg)](https://www.npmjs.com/package/fn-annotate)
 [![Build Status](https://img.shields.io/travis/aantthony/annotate/master.svg)](https://travis-ci.org/aantthony/annotate)
@@ -15,7 +15,7 @@ Get the argument names of a JavaScript function.
 
 ```js
 
-var annotate = require('annotate');
+var annotate = require('fn-annotate');
 
 function myFunction (user, document, db) {
   // do some stuff.
