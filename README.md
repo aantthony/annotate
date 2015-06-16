@@ -14,7 +14,6 @@ Get the argument names of a JavaScript function.
 ## Usage
 
 ```js
-
 var annotate = require('fn-annotate');
 
 function myFunction (user, document, db) {
@@ -31,5 +30,4 @@ console.log(annotate(x => x));
 
 // [ 'param' ]
 console.log(annotate(function * (param) {}));
-
 ```

@@ -38,7 +38,9 @@
   "homepage": "https://github.com/aantthony/annotate#readme",
   "devDependencies": {
     "expect": "^1.6.0",
-    "mocha": "^2.2.5",
-    "should": "^6.0.3"
+    "mocha": "^2.2.5"
+  },
+  "directories": {
+    "test": "test"
   }
 }
