@@ -11,13 +11,22 @@ function annotate(fn) {
   if (!fn.length) return [];
 
   var injects = /^function *([^ \(]*) *\(([^\)]*)\)/.exec(fn + '') ||
-                  /^()\(?([^)=]*)\)? *=>/.exec(fn + '');
+                /^()\(?([^)=]*)\)? *=>/.exec(fn + '');
 
   if (!injects) {
     throw new Error('Could not parse function signature for injection dependencies: ' + fn + '');
   }
 
-  return injects[2].split(',')
+  var argumentString = injects[2]
+
+  // Strip multi-line comments:
+  // Uses the lazy-quantifier (.*?): http://www.rexegg.com/regex-quantifiers.html#lazy_solution
+  .replace(/\/\*[\S\s]*?\*\//g, ' ')
+
+  // Strip single-line comments:
+  .replace(/\/\/.*\n/g, ' ');
+
+  return argumentString.split(',')
   .map(function (arg) {
     return arg && arg.trim();
   })

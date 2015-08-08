@@ -27,4 +27,23 @@ describe('annotate(arrowFunction)', function () {
     var fn = ()=>null;
     expect(annotate(fn)).toEqual([]);
   });
+  it('should ignore comments', function () {
+    var fn = (
+      // This is a test
+      x
+    ) => null;
+    expect(annotate(fn)).toEqual(['x']);
+  });
+  it('should ignore multiline comments', function () {
+    var fn = (/* testing a,b,c */) => null;
+    expect(annotate(fn)).toEqual([]);
+  });
+  it('should work with commas before multiline comments', function () {
+    var fn = (x, /* testing a,b,c */y, z) => null;
+    expect(annotate(fn)).toEqual(['x', 'y', 'z'])
+  });
+  it('should work with commas after multiline comments', function () {
+    var fn = (x/* testing a,b,c */,y, z) => null;
+    expect(annotate(fn)).toEqual(['x', 'y', 'z']);
+  });
 });

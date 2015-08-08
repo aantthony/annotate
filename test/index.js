@@ -35,6 +35,20 @@ describe('annotate(function)', function () {
   it('should parse itself', function () {
     expect(annotate(annotate)).toEqual(['fn']);
   });
+  it('should parse comments', function () {
+    expect(annotate(function (
+      // testing
+      fn
+    ) {})).toEqual(['fn']);
+  });
+  it('should multi-line comments', function () {
+    expect(annotate(function (
+      /*
+        Hello World.
+       */
+      fn
+    ) {})).toEqual(['fn']);
+  });
 });
 
 var EVIL = 'eval';
