@@ -24,7 +24,7 @@ function annotate(fn) {
   .replace(/\/\*[\S\s]*?\*\//g, ' ')
 
   // Strip single-line comments:
-  .replace(/\/\/.*\n/g, ' ');
+  .replace(/\/\/.*/g, ' ');
 
   return argumentString.split(',')
   .map(function (arg) {
