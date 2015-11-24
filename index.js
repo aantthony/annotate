@@ -10,8 +10,8 @@ function annotate(fn) {
 
   if (!fn.length) return [];
 
-  var injects = /^[^(]+([^ \(]*) *\(([^\)]*)\)/.exec(fn + '') ||
-                /^()\(?([^)=]*)\)? *=>/.exec(fn + '');
+  var injects = /^()\(?([^)=]*)\)? *=>/.exec(fn + '') ||
+                /^[^(]+([^ \(]*) *\(([^\)]*)\)/.exec(fn + '');
 
   if (!injects) {
     throw new Error('Could not parse function signature for injection dependencies: ' + fn + '');

@@ -19,6 +19,10 @@ describe('annotate(arrowFunction)', function () {
     var fn = xyz => { return xyz; };
     expect(annotate(fn)).toEqual(['xyz']);
   });
+  it('should parse an argument without parenthesis, but with a block, with a function call', function () {
+    var fn = xyz => { return e(); };
+    expect(annotate(fn)).toEqual(['xyz']);
+  });
   it('should parse functions without spacing', function () {
     var fn = x=>x;
     expect(annotate(fn)).toEqual(['x']);
