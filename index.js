@@ -10,7 +10,7 @@ function annotate(fn) {
 
   if (!fn.length) return [];
 
-  var injects = /^function *([^ \(]*) *\(([^\)]*)\)/.exec(fn + '') ||
+  var injects = /^[^(]+([^ \(]*) *\(([^\)]*)\)/.exec(fn + '') ||
                 /^()\(?([^)=]*)\)? *=>/.exec(fn + '');
 
   if (!injects) {
