@@ -26,9 +26,31 @@ function annotate(fn) {
   // Strip single-line comments:
   .replace(/\/\/.*/g, ' ');
 
+  function groupSubArguments(_, type, keys) {
+    return type + keys.split(',')
+    .map(function (arg) {
+      return arg && arg.trim();
+    })
+    .filter(Boolean)
+    .join('@');
+  }
+
+  argumentString = argumentString.replace(/(\{)([^}]*)\}/g, groupSubArguments);
+  argumentString = argumentString.replace(/(\[)([^}]*)\]/g, groupSubArguments);
+
   return argumentString.split(',')
   .map(function (arg) {
     return arg && arg.trim();
   })
+  .map(function (arg) {
+    if (arg[0] === '{') {
+      return arg.substring(1).split('@');
+    }
+    if (arg[0] === '[') {
+      return { items: arg.substring(1).split('@') };
+    }
+    return arg;
+  })
   .filter(Boolean);
+
 }

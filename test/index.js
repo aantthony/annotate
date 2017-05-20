@@ -34,6 +34,15 @@ function supportsObject() {
   }
 }
 
+function supportsDestructuring() {
+  try {
+    var fn = global[EVIL]('(({x}) => x)');
+    return typeof fn === 'function';
+  } catch (ex) {
+    return false;
+  }
+}
+
 require('./function');
 
 if (supportsArrow()) {
@@ -46,4 +55,8 @@ if(supportsGenerator()) {
 
 if (supportsObject()) {
   require('./object');
+}
+
+if (supportsDestructuring()) {
+  require('./destructuring');
 }
